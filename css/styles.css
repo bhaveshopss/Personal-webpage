@@ -2625,3 +2625,51 @@ select.form-input {
         height: 40px;
     }
 }
+
+/* ================================
+   Self-Drawing Animation Effects
+   ================================ */
+
+.draw-icon {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: var(--accent-green);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vertical-align: middle;
+    margin-right: 8px;
+    display: inline-block !important;
+}
+
+.draw-icon path,
+.draw-icon circle,
+.draw-icon line,
+.draw-icon polyline,
+.draw-icon rect {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    transition: stroke-dashoffset 1.5s ease;
+}
+
+.draw-icon.drawn path,
+.draw-icon.drawn circle,
+.draw-icon.drawn line,
+.draw-icon.drawn polyline,
+.draw-icon.drawn rect {
+    stroke-dashoffset: 0;
+}
+
+/* Specific icon colors */
+.icon-challenge {
+    stroke: #ff5f56;
+}
+
+.icon-solution {
+    stroke: var(--accent-blue);
+}
+
+.icon-results {
+    stroke: var(--accent-green);
+}

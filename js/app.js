@@ -1363,3 +1363,26 @@ console.log('%c Hey there, fellow developer! 👋', 'font-size: 20px; color: #00
 console.log('%c Looking for something interesting?', 'font-size: 14px; color: #888;');
 console.log('%c Try the Konami Code: ↑↑↓↓←→←→BA', 'font-size: 14px; color: #00b8ff;');
 console.log('%c Or type "kubectl get pods" in the command palette (Ctrl+K)', 'font-size: 14px; color: #00b8ff;');
+
+// ============================================
+// 25. Self-Drawing Icon Observer
+// ============================================
+(function () {
+    const observerOptions = {
+        threshold: 0.5,
+        rootMargin: "0px"
+    };
+
+    const drawObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('drawn');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.draw-icon').forEach(icon => {
+        drawObserver.observe(icon);
+    });
+})();
+
