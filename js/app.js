@@ -1219,3 +1219,436 @@ db-cluster-primary     3/3     Running   0          30d`;
         observer.observe(el);
     });
 })();
+
+// ============================================
+// 20. AI Chatbot (BhaveshBot)
+// ============================================
+(function () {
+    const toggle = document.getElementById('chatbot-toggle');
+    const container = document.getElementById('chatbot-container');
+    const closeBtn = document.getElementById('chatbot-close');
+    const input = document.getElementById('chatbot-input');
+    const sendBtn = document.getElementById('chatbot-send');
+    const messages = document.getElementById('chatbot-messages');
+
+    if (!toggle || !container) return;
+
+    // Knowledge base about Bhavesh
+    const knowledge = {
+        experience: "I have 1+ year of experience as a DevOps Engineer at Shellkode, where I manage multi-cloud infrastructure across AWS, Azure, and GCP for 10+ clients. I've implemented GitOps practices with ArgoCD, automated infrastructure with Terraform, and achieved 40% faster deployments.",
+        kubernetes: "I'm deeply experienced with Kubernetes! I manage EKS, AKS, and GKE clusters, implement Helm charts, design pod security policies, and have built custom Kubernetes operators. I also created a self-healing CI/CD platform that automatically diagnoses and fixes K8s issues.",
+        skills: "My core skills include: Kubernetes, Terraform, AWS/Azure/GCP, Docker, Jenkins, GitHub Actions, ArgoCD, Ansible, Prometheus, Grafana, Python, and LangChain for AI integrations.",
+        projects: "My featured projects include: 1) Self-Healing CI/CD Platform - AI-powered pipeline that auto-diagnoses failures, 2) Cloud Inventory Assistant - Anthropic MCP server for natural language AWS queries, 3) Multi-Cloud IaC Framework with Terraform.",
+        education: "I completed B.Tech in Computer Science Engineering from JIET Jodhpur (2020-2024). I was also the President of JIET Student Council, leading 150+ members.",
+        certifications: "I hold AWS Certified Solutions Architect certification and have multiple credentials in cloud and DevOps.",
+        contact: "You can reach me at workwithbhaveshcc@gmail.com or call +91 88905 69447. I'm also on LinkedIn at linkedin.com/in/bhavesh8890",
+        aiops: "I specialize in AIOps - integrating LLMs with DevOps. I've built RAG pipelines for cloud infrastructure, created an MCP server using Anthropic's protocol, and implemented AI-powered log analysis and auto-remediation systems.",
+        location: "I'm based in Bangalore, India, and open to remote opportunities worldwide.",
+        available: "I'm open for: Full-time DevOps/Cloud Engineer positions, Consulting on cloud architecture, Speaking at tech events, and Open source collaborations.",
+        terraform: "I have extensive Terraform experience - managing 200+ cloud resources across AWS, Azure, and GCP. I've built modular IaC frameworks, implemented Terraform Cloud workflows, and reduced infrastructure provisioning time by 60%.",
+        hello: "Hello! 👋 I'm BhaveshBot, your AI assistant. Ask me about Bhavesh's skills, projects, or experience!"
+    };
+
+    // Toggle chatbot
+    toggle.addEventListener('click', () => {
+        container.classList.toggle('hidden');
+        if (!container.classList.contains('hidden')) {
+            input.focus();
+        }
+    });
+
+    closeBtn.addEventListener('click', () => {
+        container.classList.add('hidden');
+    });
+
+    // Send message
+    function sendMessage() {
+        const text = input.value.trim();
+        if (!text) return;
+
+        // Add user message
+        addMessage(text, 'user');
+        input.value = '';
+
+        // Generate response
+        setTimeout(() => {
+            const response = generateResponse(text.toLowerCase());
+            addMessage(response, 'bot');
+        }, 500 + Math.random() * 1000);
+    }
+
+    function addMessage(text, type) {
+        const div = document.createElement('div');
+        div.className = `chat-message ${type}`;
+        div.innerHTML = `<div class="message-content">${text}</div>`;
+        messages.appendChild(div);
+        messages.scrollTop = messages.scrollHeight;
+    }
+
+    function generateResponse(query) {
+        if (query.includes('hello') || query.includes('hi') || query.includes('hey')) {
+            return knowledge.hello;
+        }
+        if (query.includes('experience') || query.includes('work')) {
+            return knowledge.experience;
+        }
+        if (query.includes('kubernetes') || query.includes('k8s') || query.includes('cluster')) {
+            return knowledge.kubernetes;
+        }
+        if (query.includes('skill') || query.includes('tech') || query.includes('stack')) {
+            return knowledge.skills;
+        }
+        if (query.includes('project') || query.includes('built') || query.includes('created')) {
+            return knowledge.projects;
+        }
+        if (query.includes('education') || query.includes('college') || query.includes('degree')) {
+            return knowledge.education;
+        }
+        if (query.includes('certif')) {
+            return knowledge.certifications;
+        }
+        if (query.includes('contact') || query.includes('email') || query.includes('reach')) {
+            return knowledge.contact;
+        }
+        if (query.includes('ai') || query.includes('llm') || query.includes('aiops') || query.includes('ml')) {
+            return knowledge.aiops;
+        }
+        if (query.includes('location') || query.includes('where') || query.includes('based')) {
+            return knowledge.location;
+        }
+        if (query.includes('hire') || query.includes('available') || query.includes('job') || query.includes('open')) {
+            return knowledge.available;
+        }
+        if (query.includes('terraform') || query.includes('iac') || query.includes('infrastructure')) {
+            return knowledge.terraform;
+        }
+
+        // Default response
+        return "I can tell you about Bhavesh's experience, skills, projects, Kubernetes expertise, AIOps work, or how to contact him. What would you like to know? 🤔";
+    }
+
+    sendBtn.addEventListener('click', sendMessage);
+    input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') sendMessage();
+    });
+})();
+
+// ============================================
+// 21. Easter Egg - Konami Code Game
+// ============================================
+(function () {
+    const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+    let konamiIndex = 0;
+
+    const gameModal = document.getElementById('easter-egg-game');
+    const gameClose = document.getElementById('game-close');
+    const gameArea = document.getElementById('game-area');
+    const gameStart = document.getElementById('game-start');
+    const scoreEl = document.getElementById('game-score');
+    const timeEl = document.getElementById('game-time');
+    const levelEl = document.getElementById('game-level');
+
+    if (!gameModal) return;
+
+    let score = 0;
+    let timeLeft = 30;
+    let level = 1;
+    let gameInterval = null;
+    let gameRunning = false;
+
+    // Konami code listener
+    document.addEventListener('keydown', (e) => {
+        if (e.key === konamiCode[konamiIndex]) {
+            konamiIndex++;
+            if (konamiIndex === konamiCode.length) {
+                // Easter egg activated!
+                gameModal.classList.remove('hidden');
+                konamiIndex = 0;
+            }
+        } else {
+            konamiIndex = 0;
+        }
+    });
+
+    gameClose.addEventListener('click', () => {
+        gameModal.classList.add('hidden');
+        stopGame();
+    });
+
+    gameStart.addEventListener('click', startGame);
+
+    function startGame() {
+        score = 0;
+        timeLeft = 30;
+        level = 1;
+        gameRunning = true;
+        scoreEl.textContent = score;
+        timeEl.textContent = timeLeft;
+        levelEl.textContent = level;
+        gameStart.style.display = 'none';
+
+        spawnPods();
+
+        gameInterval = setInterval(() => {
+            timeLeft--;
+            timeEl.textContent = timeLeft;
+
+            if (timeLeft <= 0) {
+                stopGame();
+            }
+        }, 1000);
+    }
+
+    function stopGame() {
+        gameRunning = false;
+        clearInterval(gameInterval);
+        gameArea.innerHTML = `<div style="grid-column: span 5; text-align: center; padding: 3rem;">
+            <h3 style="color: var(--accent-green); font-size: 1.5rem;">Game Over!</h3>
+            <p style="color: #888; margin: 1rem 0;">Final Score: ${score}</p>
+        </div>`;
+        gameStart.style.display = 'block';
+        gameStart.textContent = 'PLAY AGAIN';
+    }
+
+    function spawnPods() {
+        if (!gameRunning) return;
+
+        gameArea.innerHTML = '';
+        const numPods = 10 + level * 2;
+        const failingCount = 3 + level;
+
+        const pods = [];
+        for (let i = 0; i < numPods; i++) {
+            pods.push(i < failingCount ? 'failing' : 'healthy');
+        }
+
+        // Shuffle
+        pods.sort(() => Math.random() - 0.5);
+
+        pods.forEach((type) => {
+            const pod = document.createElement('div');
+            pod.className = `game-pod ${type}`;
+            pod.innerHTML = type === 'failing' ? '💀' : '✓';
+
+            pod.addEventListener('click', () => {
+                if (!gameRunning) return;
+
+                if (type === 'failing') {
+                    score += 10;
+                    scoreEl.textContent = score;
+                    pod.classList.remove('failing');
+                    pod.classList.add('healthy');
+                    pod.innerHTML = '✓';
+
+                    // Level up every 50 points
+                    if (score > 0 && score % 50 === 0) {
+                        level++;
+                        levelEl.textContent = level;
+                        timeLeft = Math.min(timeLeft + 5, 30);
+                    }
+                } else {
+                    score = Math.max(0, score - 5);
+                    scoreEl.textContent = score;
+                    // Visual feedback
+                    pod.style.animation = 'none';
+                    pod.offsetHeight; // Trigger reflow
+                    pod.style.animation = 'shake 0.3s';
+                }
+            });
+
+            gameArea.appendChild(pod);
+        });
+
+        // Respawn every 3 seconds
+        setTimeout(spawnPods, 3000);
+    }
+})();
+
+// ============================================
+// 22. Voice Control Navigation
+// ============================================
+(function () {
+    const voiceIndicator = document.getElementById('voice-indicator');
+    if (!voiceIndicator) return;
+
+    // Check for Web Speech API support
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) return;
+
+    const recognition = new SpeechRecognition();
+    recognition.continuous = false;
+    recognition.lang = 'en-US';
+
+    let isListening = false;
+
+    // Voice commands
+    const commands = {
+        'home': '#home',
+        'projects': '#projects',
+        'deployments': '#projects',
+        'experience': '#experience',
+        'skills': '#skills',
+        'contact': '#contact',
+        'blog': '#blog',
+        'github': '#github-activity',
+        'case': '#case-studies',
+        'case studies': '#case-studies'
+    };
+
+    // Start listening on Ctrl+Shift+V
+    document.addEventListener('keydown', (e) => {
+        if (e.ctrlKey && e.shiftKey && e.key === 'V') {
+            e.preventDefault();
+            if (!isListening) {
+                startListening();
+            }
+        }
+    });
+
+    function startListening() {
+        isListening = true;
+        voiceIndicator.classList.remove('hidden');
+        recognition.start();
+    }
+
+    recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript.toLowerCase();
+        voiceIndicator.classList.add('hidden');
+        isListening = false;
+
+        // Match command
+        for (const [keyword, selector] of Object.entries(commands)) {
+            if (transcript.includes(keyword)) {
+                const el = document.querySelector(selector);
+                if (el) {
+                    el.scrollIntoView({ behavior: 'smooth' });
+                    return;
+                }
+            }
+        }
+
+        // Special commands
+        if (transcript.includes('download resume')) {
+            document.querySelector('a[download]')?.click();
+        }
+        if (transcript.includes('email') || transcript.includes('mail')) {
+            window.location.href = 'mailto:workwithbhaveshcc@gmail.com';
+        }
+    };
+
+    recognition.onend = () => {
+        isListening = false;
+        voiceIndicator.classList.add('hidden');
+    };
+
+    recognition.onerror = () => {
+        isListening = false;
+        voiceIndicator.classList.add('hidden');
+    };
+})();
+
+// ============================================
+// 23. Interactive K8s Cluster Visualizer
+// ============================================
+(function () {
+    const modal = document.getElementById('k8s-visualizer-modal');
+    const closeBtn = document.getElementById('visualizer-close');
+
+    if (!modal) return;
+
+    // Open visualizer on "k8s" typed in command palette
+    const cmdInput = document.getElementById('cmd-input');
+    if (cmdInput) {
+        cmdInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && cmdInput.value.toLowerCase() === 'kubectl get pods') {
+                modal.classList.remove('hidden');
+                document.getElementById('cmd-overlay').classList.add('hidden');
+                initializeCluster();
+            }
+        });
+    }
+
+    closeBtn?.addEventListener('click', () => {
+        modal.classList.add('hidden');
+    });
+
+    function initializeCluster() {
+        const namespaces = [
+            { id: 'prod-pods', pods: ['web-app', 'api-gateway', 'auth-service', 'db-primary', 'db-replica', 'cache-redis'] },
+            { id: 'staging-pods', pods: ['web-staging', 'api-staging', 'worker'] },
+            { id: 'monitoring-pods', pods: ['prometheus', 'grafana', 'alertmanager', 'loki'] }
+        ];
+
+        namespaces.forEach(ns => {
+            const container = document.getElementById(ns.id);
+            if (!container) return;
+            container.innerHTML = '';
+
+            ns.pods.forEach(podName => {
+                const pod = document.createElement('div');
+                const status = getRandomStatus();
+                pod.className = `k8s-pod ${status}`;
+                pod.innerHTML = `
+                    <span class="pod-icon">${status === 'running' ? '✓' : status === 'pending' ? '⏳' : '✗'}</span>
+                    <span class="pod-name">${podName}</span>
+                `;
+
+                // Click to "fix" error pods
+                pod.addEventListener('click', () => {
+                    if (pod.classList.contains('error')) {
+                        pod.classList.remove('error');
+                        pod.classList.add('pending');
+                        pod.querySelector('.pod-icon').textContent = '⏳';
+
+                        setTimeout(() => {
+                            pod.classList.remove('pending');
+                            pod.classList.add('running');
+                            pod.querySelector('.pod-icon').textContent = '✓';
+                        }, 2000);
+                    }
+                });
+
+                container.appendChild(pod);
+            });
+        });
+    }
+
+    function getRandomStatus() {
+        const rand = Math.random();
+        if (rand > 0.85) return 'error';
+        if (rand > 0.75) return 'pending';
+        return 'running';
+    }
+
+    // Periodically update pod statuses
+    setInterval(() => {
+        if (modal.classList.contains('hidden')) return;
+
+        const pods = modal.querySelectorAll('.k8s-pod.running');
+        pods.forEach(pod => {
+            if (Math.random() > 0.95) {
+                pod.classList.remove('running');
+                pod.classList.add('error');
+                pod.querySelector('.pod-icon').textContent = '✗';
+            }
+        });
+    }, 5000);
+})();
+
+// ============================================
+// 24. PWA Service Worker Registration
+// ============================================
+(function () {
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            // Service worker will be registered when created
+            // navigator.serviceWorker.register('/sw.js');
+        });
+    }
+})();
+
+// Console Easter Egg
+console.log('%c Hey there, fellow developer! 👋', 'font-size: 20px; color: #00ff41;');
+console.log('%c Looking for something interesting?', 'font-size: 14px; color: #888;');
+console.log('%c Try the Konami Code: ↑↑↓↓←→←→BA', 'font-size: 14px; color: #00b8ff;');
+console.log('%c Or type "kubectl get pods" in the command palette (Ctrl+K)', 'font-size: 14px; color: #00b8ff;');

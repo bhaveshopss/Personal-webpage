@@ -31,10 +31,16 @@
     <link rel="icon" type="image/png" href="assets/logo.png">
     <link rel="apple-touch-icon" href="assets/logo.png">
 
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
     <!-- Theme Color -->
     <meta name="theme-color" content="#0d1117">
     <meta name="msapplication-navbutton-color" content="#0d1117">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1542,6 +1548,120 @@
             <input type="text" id="cmd-input" class="code-font"
                 placeholder="Type to search (e.g., 'projects', 'contact')..." autocomplete="off">
             <div id="cmd-results" class="code-font"></div>
+        </div>
+    </div>
+
+    <!-- AI Chatbot Widget -->
+    <div id="chatbot-widget" class="chatbot-widget">
+        <button id="chatbot-toggle" class="chatbot-toggle" title="Ask me anything about Bhavesh!">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2" />
+                <path d="M8 14s1.5 2 4 2 4-2 4-2" fill="none" stroke="currentColor" stroke-width="2" />
+                <circle cx="9" cy="9" r="1" fill="currentColor" />
+                <circle cx="15" cy="9" r="1" fill="currentColor" />
+            </svg>
+            <span class="chatbot-badge">AI</span>
+        </button>
+        <div id="chatbot-container" class="chatbot-container hidden">
+            <div class="chatbot-header">
+                <div class="chatbot-title">
+                    <span class="chatbot-status-dot"></span>
+                    BhaveshBot AI
+                </div>
+                <button id="chatbot-close" class="chatbot-close">×</button>
+            </div>
+            <div id="chatbot-messages" class="chatbot-messages">
+                <div class="chat-message bot">
+                    <div class="message-content">
+                        👋 Hi! I'm BhaveshBot. Ask me anything about Bhavesh's experience, skills, or projects!
+                        <br><br>
+                        Try: "What's your Kubernetes experience?" or "Tell me about your projects"
+                    </div>
+                </div>
+            </div>
+            <div class="chatbot-input-container">
+                <input type="text" id="chatbot-input" class="chatbot-input" placeholder="Ask me anything..."
+                    autocomplete="off">
+                <button id="chatbot-send" class="chatbot-send">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
+                        <line x1="22" y1="2" x2="11" y2="13" stroke="currentColor" stroke-width="2" />
+                        <polygon points="22 2 15 22 11 13 2 9 22 2" fill="none" stroke="currentColor"
+                            stroke-width="2" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Voice Control Indicator -->
+    <div id="voice-indicator" class="voice-indicator hidden">
+        <div class="voice-waves">
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+        </div>
+        <span>Listening... Say a command</span>
+    </div>
+
+    <!-- Easter Egg Game Modal -->
+    <div id="easter-egg-game" class="game-modal hidden">
+        <div class="game-container">
+            <div class="game-header">
+                <h2>🎮 Debug The Pipeline</h2>
+                <span class="game-subtitle">Fix the broken CI/CD before time runs out!</span>
+                <button id="game-close" class="game-close">×</button>
+            </div>
+            <div class="game-stats">
+                <div class="game-stat">
+                    <span class="stat-label">Score</span>
+                    <span id="game-score" class="stat-value">0</span>
+                </div>
+                <div class="game-stat">
+                    <span class="stat-label">Time</span>
+                    <span id="game-time" class="stat-value">30</span>
+                </div>
+                <div class="game-stat">
+                    <span class="stat-label">Level</span>
+                    <span id="game-level" class="stat-value">1</span>
+                </div>
+            </div>
+            <div id="game-area" class="game-area">
+                <!-- Game pods will be generated here -->
+            </div>
+            <div class="game-instructions">
+                Click the <span style="color: #ff5f56;">RED</span> failing pods to fix them!
+                <br>Don't click the <span style="color: #00ff41;">GREEN</span> ones!
+            </div>
+            <button id="game-start" class="game-start-btn">START GAME</button>
+        </div>
+    </div>
+
+    <!-- K8s Visualizer Modal -->
+    <div id="k8s-visualizer-modal" class="visualizer-modal hidden">
+        <div class="visualizer-container">
+            <div class="visualizer-header">
+                <h2>☸️ Live Kubernetes Cluster</h2>
+                <button id="visualizer-close" class="visualizer-close">×</button>
+            </div>
+            <div id="k8s-cluster" class="k8s-cluster">
+                <div class="cluster-namespace" id="ns-production">
+                    <span class="ns-label">namespace: production</span>
+                    <div class="pods-container" id="prod-pods"></div>
+                </div>
+                <div class="cluster-namespace" id="ns-staging">
+                    <span class="ns-label">namespace: staging</span>
+                    <div class="pods-container" id="staging-pods"></div>
+                </div>
+                <div class="cluster-namespace" id="ns-monitoring">
+                    <span class="ns-label">namespace: monitoring</span>
+                    <div class="pods-container" id="monitoring-pods"></div>
+                </div>
+            </div>
+            <div class="cluster-legend">
+                <span><span class="legend-dot running"></span> Running</span>
+                <span><span class="legend-dot pending"></span> Pending</span>
+                <span><span class="legend-dot error"></span> CrashLoopBackOff</span>
+            </div>
         </div>
     </div>
 

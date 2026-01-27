@@ -2393,3 +2393,615 @@ select.form-input {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+/* ================================
+   INNOVATION FEATURES
+   ================================ */
+
+/* AI Chatbot Widget */
+.chatbot-widget {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1000;
+}
+
+.chatbot-toggle {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00ff41, #00b8ff);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0d1117;
+    box-shadow: 0 5px 25px rgba(0, 255, 65, 0.4);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.chatbot-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 35px rgba(0, 255, 65, 0.6);
+}
+
+.chatbot-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ff5f56;
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 3px 6px;
+    border-radius: 10px;
+    animation: pulse-badge 2s infinite;
+}
+
+@keyframes pulse-badge {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.chatbot-container {
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    width: 380px;
+    max-height: 500px;
+    background: #0d1117;
+    border: 1px solid rgba(0, 255, 65, 0.3);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+}
+
+.chatbot-header {
+    background: linear-gradient(90deg, rgba(0, 255, 65, 0.1), rgba(0, 184, 255, 0.1));
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chatbot-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    color: var(--accent-green);
+}
+
+.chatbot-status-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--accent-green);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+.chatbot-close {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.chatbot-close:hover {
+    color: #ff5f56;
+}
+
+.chatbot-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    max-height: 300px;
+}
+
+.chat-message {
+    margin-bottom: 1rem;
+    display: flex;
+}
+
+.chat-message.bot {
+    justify-content: flex-start;
+}
+
+.chat-message.user {
+    justify-content: flex-end;
+}
+
+.message-content {
+    max-width: 80%;
+    padding: 12px 16px;
+    border-radius: 16px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.chat-message.bot .message-content {
+    background: #161b22;
+    color: #c9d1d9;
+    border-bottom-left-radius: 4px;
+}
+
+.chat-message.user .message-content {
+    background: linear-gradient(135deg, rgba(0, 255, 65, 0.2), rgba(0, 184, 255, 0.2));
+    color: var(--text-main);
+    border-bottom-right-radius: 4px;
+}
+
+.chatbot-input-container {
+    display: flex;
+    padding: 1rem;
+    gap: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chatbot-input {
+    flex: 1;
+    padding: 12px 16px;
+    background: #161b22;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    color: var(--text-main);
+    font-size: 0.9rem;
+}
+
+.chatbot-input:focus {
+    outline: none;
+    border-color: var(--accent-green);
+}
+
+.chatbot-send {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--accent-green);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0d1117;
+    transition: all 0.3s ease;
+}
+
+.chatbot-send:hover {
+    transform: scale(1.1);
+}
+
+/* Voice Control Indicator */
+.voice-indicator {
+    position: fixed;
+    bottom: 50%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    background: rgba(0, 0, 0, 0.9);
+    border: 2px solid var(--accent-green);
+    border-radius: 16px;
+    padding: 2rem 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    z-index: 2000;
+    box-shadow: 0 0 50px rgba(0, 255, 65, 0.3);
+}
+
+.voice-waves {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    height: 40px;
+}
+
+.voice-waves .wave {
+    width: 6px;
+    background: var(--accent-green);
+    border-radius: 3px;
+    animation: voice-wave 1s infinite ease-in-out;
+}
+
+.voice-waves .wave:nth-child(1) {
+    height: 20px;
+    animation-delay: 0s;
+}
+
+.voice-waves .wave:nth-child(2) {
+    height: 35px;
+    animation-delay: 0.2s;
+}
+
+.voice-waves .wave:nth-child(3) {
+    height: 25px;
+    animation-delay: 0.4s;
+}
+
+@keyframes voice-wave {
+
+    0%,
+    100% {
+        transform: scaleY(1);
+    }
+
+    50% {
+        transform: scaleY(0.5);
+    }
+}
+
+.voice-indicator span {
+    color: var(--accent-green);
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+}
+
+/* Easter Egg Game Modal */
+.game-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-container {
+    background: #0d1117;
+    border: 2px solid var(--accent-green);
+    border-radius: 16px;
+    padding: 2rem;
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 0 50px rgba(0, 255, 65, 0.3);
+}
+
+.game-header {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.game-header h2 {
+    font-size: 2rem;
+    color: var(--accent-green);
+    margin: 0;
+}
+
+.game-subtitle {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.game-close {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.game-close:hover {
+    color: #ff5f56;
+}
+
+.game-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.game-stat {
+    text-align: center;
+}
+
+.game-stat .stat-label {
+    display: block;
+    font-size: 0.8rem;
+    color: #888;
+    text-transform: uppercase;
+}
+
+.game-stat .stat-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-green);
+    font-family: 'Fira Code', monospace;
+}
+
+.game-area {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    padding: 1.5rem;
+    background: #161b22;
+    border-radius: 12px;
+    min-height: 200px;
+    margin-bottom: 1rem;
+}
+
+.game-pod {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 1.5rem;
+}
+
+.game-pod.healthy {
+    background: rgba(0, 255, 65, 0.2);
+    border: 2px solid var(--accent-green);
+}
+
+.game-pod.failing {
+    background: rgba(255, 95, 86, 0.2);
+    border: 2px solid #ff5f56;
+    animation: shake 0.5s infinite;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-3px);
+    }
+
+    75% {
+        transform: translateX(3px);
+    }
+}
+
+.game-pod:hover {
+    transform: scale(1.1);
+}
+
+.game-instructions {
+    color: #888;
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+}
+
+.game-start-btn {
+    padding: 14px 40px;
+    background: linear-gradient(90deg, var(--accent-green), var(--accent-blue));
+    border: none;
+    border-radius: 8px;
+    color: #0d1117;
+    font-family: 'Fira Code', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.game-start-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 25px rgba(0, 255, 65, 0.4);
+}
+
+/* K8s Visualizer Modal */
+.visualizer-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 2500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.visualizer-container {
+    background: #0d1117;
+    border: 1px solid rgba(0, 255, 65, 0.3);
+    border-radius: 16px;
+    padding: 2rem;
+    max-width: 900px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.visualizer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.visualizer-header h2 {
+    color: var(--accent-green);
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.visualizer-close {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.visualizer-close:hover {
+    color: #ff5f56;
+}
+
+.k8s-cluster {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.cluster-namespace {
+    background: #161b22;
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.ns-label {
+    display: block;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.75rem;
+    color: var(--accent-blue);
+    margin-bottom: 1rem;
+}
+
+.pods-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.k8s-pod {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    font-family: 'Fira Code', monospace;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.k8s-pod.running {
+    background: rgba(0, 255, 65, 0.15);
+    border: 2px solid var(--accent-green);
+    color: var(--accent-green);
+}
+
+.k8s-pod.pending {
+    background: rgba(255, 189, 46, 0.15);
+    border: 2px solid #ffbd2e;
+    color: #ffbd2e;
+    animation: pulse-slow 2s infinite;
+}
+
+.k8s-pod.error {
+    background: rgba(255, 95, 86, 0.15);
+    border: 2px solid #ff5f56;
+    color: #ff5f56;
+    animation: shake 0.5s infinite;
+}
+
+@keyframes pulse-slow {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.k8s-pod:hover {
+    transform: scale(1.1);
+    z-index: 10;
+}
+
+.k8s-pod .pod-icon {
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+}
+
+.k8s-pod .pod-name {
+    font-size: 0.5rem;
+    text-align: center;
+    word-break: break-all;
+}
+
+.cluster-legend {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1.5rem;
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.legend-dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 4px;
+    margin-right: 6px;
+}
+
+.legend-dot.running {
+    background: var(--accent-green);
+}
+
+.legend-dot.pending {
+    background: #ffbd2e;
+}
+
+.legend-dot.error {
+    background: #ff5f56;
+}
+
+/* Mobile Responsive for New Features */
+@media (max-width: 768px) {
+    .chatbot-widget {
+        bottom: 1rem;
+        right: 1rem;
+    }
+
+    .chatbot-container {
+        width: 320px;
+        right: -10px;
+    }
+
+    .game-container {
+        padding: 1.5rem;
+    }
+
+    .game-area {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .game-pod {
+        width: 40px;
+        height: 40px;
+    }
+}
