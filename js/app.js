@@ -369,8 +369,8 @@ setInterval(addLog, 2000); // Add new log every 2 seconds
         { id: 'projects', label: 'View Projects', desc: 'Jump to Deployments', action: () => scrollTo('#projects') },
         { id: 'resume', label: 'Download Resume', desc: 'Get the PDF', action: () => document.querySelector('a[download]').click() },
         { id: 'email', label: 'Send Email', desc: 'Open mail client', action: () => window.location.href = "mailto:workwithbhaveshcc@gmail.com" },
-        { id: 'github', label: 'Open GitHub', desc: 'Visit profile', action: () => window.open("https://github.com/Bhavesh8890", "_blank") },
-        { id: 'linkedin', label: 'Open LinkedIn', desc: 'Visit profile', action: () => window.open("https://linkedin.com/in/bhavesh8890", "_blank") },
+        { id: 'github', label: 'Open GitHub', desc: 'Visit profile', action: () => window.open("https://github.com/bhaveshopss", "_blank") },
+        { id: 'linkedin', label: 'Open LinkedIn', desc: 'Visit profile', action: () => window.open("https://www.linkedin.com/in/bhaveshops/", "_blank") },
         { id: 'skills', label: 'View Tech Stack', desc: 'Languages & Tools', action: () => scrollTo('#skills') }
     ];
 

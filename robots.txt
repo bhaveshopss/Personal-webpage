@@ -1,11 +1,11 @@
 # Robots.txt for Bhavesh Kumar Parmar Portfolio
-# https://bhaveshkumarparmar.vercel.app/
+# https://bhaveshops.in/
 
 User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://bhaveshkumarparmar.vercel.app/sitemap.xml
+Sitemap: https://bhaveshops.in/sitemap.xml
 
 # Disallow admin or private paths (none currently)
 # Disallow: /admin/
