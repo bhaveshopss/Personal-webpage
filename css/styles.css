@@ -1,15 +1,31 @@
 :root {
+    /* Core Colors - Premium Dark Theme */
     --bg-dark: #000000;
-    /* True Black */
-    --accent-green: #ffffff;
-    --accent-blue: #eeeeee;
-    --accent-purple: #dddddd;
-    --text-main: #f0f0f0;
-    --glass: rgba(255, 255, 255, 0.05);
+    --bg-card: #0a0a0a;
+    --bg-muted: #111111;
+
+    /* Text Colors */
+    --text-main: #fafafa;
+    --text-muted: #a1a1aa;
+    --text-foreground: #ffffff;
+
+    /* Border & Effects */
+    --border-color: rgba(255, 255, 255, 0.08);
     --border-glow: rgba(255, 255, 255, 0.15);
+    --glass: rgba(255, 255, 255, 0.03);
+
+    /* Accent Colors (subtle) */
+    --accent-green: #ffffff;
+    --accent-blue: #e4e4e7;
+    --accent-purple: #d4d4d8;
+
+    /* Spacing */
+    --radius: 1.25rem;
+    --radius-lg: 1.5rem;
+
+    /* Legacy */
     --terminal-header: #0a0a0a;
-    /* Almost black */
-    --neon-shadow: none;
+    --neon-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
 }
 
 * {
@@ -373,50 +389,45 @@ h1 {
     margin-top: 2rem;
 }
 
-.card {
-    background: rgba(22, 27, 34, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.03);
-    padding: 2.5rem;
-    border-radius: 24px;
+/* Card Component - Premium Dark UI */
+.card,
+.case-study-card {
+    background: var(--bg-card);
+    border: 0.75px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
     position: relative;
     overflow: hidden;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    transition: transform 0.1s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-    transform-style: preserve-3d;
-    perspective: 1000px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 27px 0 rgba(45, 45, 45, 0.1);
 }
 
-.card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
-    transition: 0.5s;
+/* Glowing border effect variables */
+.card,
+.case-study-card {
+    --active: 0;
+    --start: 0;
+    --spread: 60;
+    --glowingeffect-border-width: 2px;
 }
 
-.card:hover::before {
-    left: 100%;
-}
-
-.card:hover {
-    border-color: var(--accent-green);
-    transform: translateY(-5px);
-    background: rgba(22, 27, 34, 0.9);
-    box-shadow: var(--neon-shadow);
+.card:hover,
+.case-study-card:hover {
+    border-color: var(--border-glow);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
 }
 
 .card-tag {
     font-size: 0.7rem;
     text-transform: uppercase;
-    color: var(--accent-blue);
-    font-weight: bold;
+    color: var(--text-muted);
+    font-weight: 600;
     display: block;
     margin-bottom: 0.5rem;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
 }
 
 /* Metrics */
@@ -429,23 +440,22 @@ h1 {
 
 .metric-box {
     text-align: center;
-    background: rgba(0, 0, 0, 0.3);
+    background: var(--bg-muted);
     padding: 1rem;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.02);
-    transition: 0.3s;
+    border-radius: 0.75rem;
+    border: 0.75px solid var(--border-color);
+    transition: all 0.3s ease;
 }
 
 .metric-box:hover {
-    border-color: var(--accent-green);
+    border-color: var(--border-glow);
 }
 
 .metric-val {
     font-size: 1.5rem;
-    font-weight: 900;
-    color: var(--accent-green);
+    font-weight: 700;
+    color: var(--text-foreground);
     display: block;
-    text-shadow: 0 0 5px rgba(0, 255, 65, 0.3);
 }
 
 .metric-label {
