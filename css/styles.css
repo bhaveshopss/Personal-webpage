@@ -1,16 +1,15 @@
 :root {
-    --bg-dark: #0a0b10;
+    --bg-dark: #000000;
+    /* True Black */
     --accent-green: #ffffff;
-    /* White or very light gray */
-    --accent-blue: #e0e0e0;
-    --accent-purple: #cccccc;
-    --text-main: #e0e0e0;
+    --accent-blue: #eeeeee;
+    --accent-purple: #dddddd;
+    --text-main: #f0f0f0;
     --glass: rgba(255, 255, 255, 0.05);
-    --border-glow: rgba(255, 255, 255, 0.1);
-    /* Subtle white border */
-    --terminal-header: #1a1b26;
+    --border-glow: rgba(255, 255, 255, 0.15);
+    --terminal-header: #0a0a0a;
+    /* Almost black */
     --neon-shadow: none;
-    /* No neon shadow */
 }
 
 * {
