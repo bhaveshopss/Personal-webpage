@@ -10,8 +10,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;500;700&family=Inter:wght@300;400;700;900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;500;700&family=Inter:wght@300;400;700;900&family=Outfit:wght@300;500;700;900&display=swap"
         rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
         :root {
             --bg-primary: #0d1117;
@@ -172,16 +173,27 @@
             z-index: -1;
             opacity: 0.1;
         }
+
+        #shader-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            opacity: 0.4;
+        }
     </style>
 </head>
 
 <body>
+    <div id="shader-background"></div>
     <canvas id="matrix-bg"></canvas>
 
     <div class="container">
         <div class="error-code">404</div>
 
-        <div class="terminal">
+        <div class="terminal card">
             <div class="terminal-header">
                 <div class="dot red"></div>
                 <div class="dot yellow"></div>
@@ -241,6 +253,8 @@
             canvas.height = window.innerHeight;
         });
     </script>
+    <script src="js/creative_additions.js"></script>
+    <script src="js/shader_animation.js"></script>
 </body>
 
 </html>
