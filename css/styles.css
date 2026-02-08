@@ -73,15 +73,29 @@ body::after {
     stroke-linejoin: round;
 }
 
-/* Matrix Canvas Background */
-#matrix-canvas {
+#shader-background {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
-    opacity: 0.15;
+    z-index: -2;
+    /* Behind everything */
+    opacity: 0.4;
+    /* Subtle effect */
+}
+
+/* Matrix Canvas Background */
+#matrix-canvas,
+#matrix-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+    /* Behind shader if visible, or hide via class */
+    opacity: 0.05;
     pointer-events: none;
 }
 
