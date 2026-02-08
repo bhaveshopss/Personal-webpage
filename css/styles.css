@@ -2777,6 +2777,64 @@ select.form-input {
     stroke: var(--accent-blue);
 }
 
+
 .icon-results {
     stroke: var(--accent-green);
+}
+
+/* Glowing Effect - Adapted from React Component */
+.card,
+.case-study-card {
+    --active: 0;
+    --start: 0;
+    --glowingeffect-border-width: 1px;
+    --spread: 60;
+    /* Increased spread for better visibility */
+}
+
+/* Ensure content is above glow */
+.card>*,
+.case-study-card>* {
+    position: relative;
+    z-index: 2;
+}
+
+.glowing-effect-container {
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    overflow: hidden;
+    /* Ensure glow doesn't spill out */
+    opacity: 1;
+    z-index: 1;
+}
+
+.glowing-effect-glow {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    /* Create a mask for the border area */
+    padding: var(--glowingeffect-border-width);
+    background: transparent;
+
+    /* Using mask to cut out the inner content, leaving only border */
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+
+    /* The gradient background that rotates */
+    background: conic-gradient(from calc(var(--start) * 1deg),
+            transparent 0deg,
+            transparent calc(180deg - var(--spread) * 1deg),
+            rgba(255, 255, 255, 0.5) calc(180deg - var(--spread) * 0.5deg),
+            rgba(255, 255, 255, 1) 180deg,
+            rgba(255, 255, 255, 0.5) calc(180deg + var(--spread) * 0.5deg),
+            transparent calc(180deg + var(--spread) * 1deg),
+            transparent 360deg);
+
+    opacity: var(--active);
+    transition: opacity 0.3s ease;
 }
