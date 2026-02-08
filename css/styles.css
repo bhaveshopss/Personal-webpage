@@ -2652,6 +2652,87 @@ select.form-input {
     }
 }
 
+/* Neon Button Effect - Adapted from React Component */
+.neon-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 2rem;
+    background: rgba(59, 130, 246, 0.05);
+    /* bg-blue-500/5 */
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    /* border-blue-500/20 */
+    color: var(--text-main);
+    border-radius: 9999px;
+    /* rounded-full */
+    font-weight: 500;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'Outfit', sans-serif;
+}
+
+.neon-button:hover {
+    background: rgba(59, 130, 246, 0);
+    /* hover:bg-blue-500/0 */
+    border-color: rgba(59, 130, 246, 0.4);
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.1);
+}
+
+/* Simulating the top gradient line */
+.neon-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 12.5%;
+    /* center w-3/4 */
+    width: 75%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 1), transparent);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Simulating the bottom gradient line */
+.neon-button::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 12.5%;
+    width: 75%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 1), transparent);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.neon-button:hover::before,
+.neon-button:hover::after {
+    opacity: 1;
+}
+
+.neon-button.solid {
+    background: rgba(59, 130, 246, 1);
+    color: white;
+    border-color: transparent;
+}
+
+.neon-button.solid:hover {
+    background: rgba(37, 99, 235, 1);
+}
+
+.neon-button.ghost {
+    background: transparent;
+    border-color: transparent;
+}
+
+.neon-button.ghost:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(82, 82, 91, 1);
+}
+
 /* ================================
    Self-Drawing Animation Effects
    ================================ */
