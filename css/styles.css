@@ -23,7 +23,7 @@
 body {
     background-color: var(--bg-dark);
     color: var(--text-main);
-    font-family: 'Inter', sans-serif;
+    font-family: 'Outfit', sans-serif;
     line-height: 1.6;
     overflow-x: hidden;
     position: relative;
@@ -1317,7 +1317,7 @@ canvas#matrix-bg {
 .grafana-header {
     display: flex;
     justify-content: space-between;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Outfit', sans-serif;
     font-size: 0.9rem;
     color: #ccc;
     margin-bottom: 10px;
@@ -2222,7 +2222,7 @@ body.light-mode .terminal-window {
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 6px;
     color: var(--text-main);
-    font-family: 'Inter', sans-serif;
+    font-family: 'Outfit', sans-serif;
     font-size: 0.95rem;
     transition: border-color 0.3s;
 }
